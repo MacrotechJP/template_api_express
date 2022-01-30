@@ -1,0 +1,181 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Template API",
+    "description": "API Docs"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http", "https", "ws", "wss"],
+  "tags": [
+    {
+      "name": "v1",
+      "description": "バージョン1"
+    }
+  ],
+  "paths":{
+    "/v1/health":{
+      "get":{
+        "tags": ["v1", "general"],
+        "summary": "疎通確認",
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/sign-up":{
+      "post":{
+        "tags": ["v1", "auth"],
+        "summary": "新規会員登録",
+        "parameters": [
+          {
+            "name": "userEmail",
+            "in": "formData",
+            "description": "メールアドレス",
+            "required": true,
+            "type": "string"
+          },{
+            "name": "userPassword",
+            "in": "formData",
+            "description": "パスワード",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/sign-in":{
+      "post":{
+        "tags": ["v1", "auth"],
+        "summary": "会員ログイン",
+        "parameters": [
+          {
+            "name": "userEmail",
+            "in": "formData",
+            "description": "メールアドレス",
+            "required": true,
+            "type": "string"
+          },{
+            "name": "userPassword",
+            "in": "formData",
+            "description": "パスワード",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/sign-out":{
+      "delete":{
+        "tags": ["v1", "auth"],
+        "summary": "会員ログアウト",
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/me":{
+      "get":{
+        "tags": ["v1", "auth"],
+        "summary": "ログインユーザー情報取得",
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/send-account-activation":{
+      "post":{
+        "tags": ["v1", "auth"],
+        "summary": "アカウント有効化（メール送信）",
+        "parameters": [],
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/begin-account-activation":{
+      "post":{
+        "tags": ["v1", "auth"],
+        "summary": "アカウント有効化（ユーザー情報更新）",
+        "parameters": [
+          {
+            "name": "activeTokenCode",
+            "in": "formData",
+            "description": "アカウント有効化トークン",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/send-password-reset":{
+      "post":{
+        "tags": ["v1", "auth"],
+        "summary": "パスワード再設定（メール送信）",
+        "parameters": [
+          {
+            "name": "userEmail",
+            "in": "formData",
+            "description": "メールアドレス",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    },
+    "/v1/auth/begin-password-reset":{
+      "post":{
+        "tags": ["v1","auth"],
+        "summary": "パスワード再設定（ユーザー情報更新）",
+        "parameters": [
+          {
+            "name": "resetPasswordToken",
+            "in": "formData",
+            "description": "パスワード再設定トークン",
+            "required": true,
+            "type": "string"
+          },{
+            "name": "userPassword",
+            "in": "formData",
+            "description": "パスワード",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description":"成功時のレスポンス"
+          }
+        }
+      }
+    }
+  }
+}
